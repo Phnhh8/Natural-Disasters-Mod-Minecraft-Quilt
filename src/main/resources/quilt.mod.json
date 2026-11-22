@@ -1,33 +1,33 @@
 {
   "schema_version": 1,
   "quilt_loader": {
-    "group": "com.example.disasters",
-    "id": "naturaldisasters",
+    "group": "com.phnhh8.quiltmod",
+    "id": "phnhh8_quiltmod",
     "version": "1.0.0",
     "metadata": {
-      "name": "Natural Disasters Mod",
-      "description": "Adds 12 Natural Disasters and Disaster Stopper to Minecraft 1.20.1 Quilt.",
+      "name": "Phnhh_8 Quilt Mod",
+      "description": "Minecraft 1.21.1 Quilt mod by Phnhh_8.",
       "contributors": {
-        "User": "Author"
+        "Phnhh_8": "Owner"
       },
       "license": "MIT"
     },
     "intermediate_mappings": "net.fabricmc:intermediary",
     "entrypoints": {
-      "init": "com.example.disasters.NaturalDisastersMod"
+      "init": "com.phnhh8.quiltmod.MainMod"
     },
     "depends": [
       {
         "id": "quilt_loader",
-        "versions": ">=0.20.0"
+        "versions": ">=0.27.0"
       },
       {
         "id": "quilted_fabric_api",
-        "versions": "*"
+        "versions": ">=11.0.0"
       },
       {
         "id": "minecraft",
-        "versions": "~1.20.1"
+        "versions": "~1.21.1"
       }
     ]
   }
