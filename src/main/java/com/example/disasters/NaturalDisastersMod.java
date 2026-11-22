@@ -4,12 +4,15 @@ import com.example.disasters.event.AntiRepostHandler;
 import net.fabricmc.api.ModInitializer;
 import net.fabricmc.fabric.api.event.lifecycle.v1.ServerTickEvents;
 import net.fabricmc.fabric.api.itemgroup.v1.FabricItemGroup;
+import net.fabricmc.fabric.api.itemgroup.v1.ItemGroupEvents;
 import net.fabricmc.fabric.api.networking.v1.ServerPlayConnectionEvents;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Registry;
 import net.minecraft.core.particles.ParticleTypes;
 import net.minecraft.core.registries.BuiltInRegistries;
+import net.minecraft.core.registries.Registries;
 import net.minecraft.network.chat.Component;
+import net.minecraft.resources.ResourceKey;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.sounds.SoundEvents;
@@ -28,6 +31,7 @@ import net.minecraft.world.entity.item.PrimedTnt;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.entity.projectile.LargeFireball;
 import net.minecraft.world.item.CreativeModeTab;
+import net.minecraft.world.item.CreativeModeTabs;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.Items;
@@ -44,6 +48,11 @@ public class NaturalDisastersMod implements ModInitializer {
     public static final String MODID = "naturaldisasters";
     private static final List<Item> ALL = new ArrayList<>();
 
+    public static final ResourceKey<CreativeModeTab> TAB_KEY = ResourceKey.create(
+            Registries.CREATIVE_MODE_TAB,
+            ResourceLocation.fromNamespaceAndPath(MODID, "naturaldisasters_tab")
+    );
+
     private static Item reg(String id, String t) {
         Item item = Registry.register(
                 BuiltInRegistries.ITEM,
@@ -54,40 +63,43 @@ public class NaturalDisastersMod implements ModInitializer {
         return item;
     }
 
-    public static final Item I1 = reg("tornado_spawner", "tornado"),
-            I2 = reg("meteor_spawner", "meteor"),
-            I3 = reg("earthquake_spawner", "earthquake"),
-            I4 = reg("volcano_spawner", "volcano"),
-            I5 = reg("lightning_spawner", "lightning"),
-            I6 = reg("tsunami_spawner", "tsunami"),
-            I7 = reg("blizzard_spawner", "blizzard"),
-            I8 = reg("blackhole_spawner", "blackhole"),
-            I9 = reg("acidrain_spawner", "acidrain"),
-            I10 = reg("nuke_spawner", "nuke"),
-            I11 = reg("sandstorm_spawner", "sandstorm"),
-            I12 = reg("wildfire_spawner", "wildfire");
-
-    public static final CreativeModeTab TAB = Registry.register(
-            BuiltInRegistries.CREATIVE_MODE_TAB,
-            ResourceLocation.fromNamespaceAndPath(MODID, "naturaldisasters_tab"),
-            FabricItemGroup.builder()
-                    .title(Component.literal("Natural Disasters"))
-                    .icon(() -> new ItemStack(Items.FIRE_CHARGE))
-                    .displayItems((params, output) -> ALL.forEach(output::accept))
-                    .build()
-    );
-
     private static Vec3 tPos = null, bPos = null;
     private static int tTick = 0, bTick = 0;
 
     @Override
     public void onInitialize() {
+        reg("tornado_spawner", "tornado");
+        reg("meteor_spawner", "meteor");
+        reg("earthquake_spawner", "earthquake");
+        reg("volcano_spawner", "volcano");
+        reg("lightning_spawner", "lightning");
+        reg("tsunami_spawner", "tsunami");
+        reg("blizzard_spawner", "blizzard");
+        reg("blackhole_spawner", "blackhole");
+        reg("acidrain_spawner", "acidrain");
+        reg("nuke_spawner", "nuke");
+        reg("sandstorm_spawner", "sandstorm");
+        reg("wildfire_spawner", "wildfire");
+
+        Registry.register(
+                BuiltInRegistries.CREATIVE_MODE_TAB,
+                TAB_KEY,
+                FabricItemGroup.builder()
+                        .title(Component.literal("Natural Disasters"))
+                        .icon(() -> new ItemStack(Items.FIRE_CHARGE))
+                        .displayItems((params, output) -> ALL.forEach(output::accept))
+                        .build()
+        );
+
+        ItemGroupEvents.modifyEntriesEvent(CreativeModeTabs.TOOLS_AND_UTILITIES).register(entries -> {
+            ALL.forEach(entries::accept);
+        });
+
         ServerTickEvents.END_WORLD_TICK.register(NaturalDisastersMod::onTick);
         ServerPlayConnectionEvents.JOIN.register((handler, sender, server) ->
                 AntiRepostHandler.checkAndWarn(handler.getPlayer())
         );
     }
-
     public static class DisasterItem extends Item {
         private final String type;
         public DisasterItem(Properties p, String t) { super(p); this.type = t; }
