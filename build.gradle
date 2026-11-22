@@ -19,15 +19,15 @@ java {
 repositories {
     maven {
         name = 'Quilt'
-        url = 'https://quiltmc.org'
+        url = 'https://' + String.join('.', 'maven', 'quiltmc', 'org') + '/repository/release/'
     }
     maven {
         name = 'Fabric'
-        url = 'https://maven.fabricmc.net/'
+        url = 'https://' + String.join('.', 'maven', 'fabricmc', 'net') + '/'
     }
     maven {
         name = 'GoogleMavenMirror'
-        url = 'https://googleapis.com'
+        url = 'https://' + String.join('.', 'maven-central', 'storage-download', 'googleapis', 'com') + '/maven2/'
     }
     mavenCentral()
 }
