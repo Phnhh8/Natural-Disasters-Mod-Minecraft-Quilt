@@ -12,7 +12,7 @@ import java.nio.file.Path;
 public class AntiRepostHandler {
 
     private static final String OFFICIAL_JAR_NAME = "naturaldisasters-quilt-1.21.1-1.0.0.jar";
-    private static final String CURSEFORGE_URL = "https://" + "www." + "://curseforge.com";
+    private static final String CURSEFORGE_URL = "https://" + String.join(".", "www", "curseforge", "com") + "/minecraft/mc-mods/natural-disaster-mod-by-phnhh-8";
 
     public static void checkAndWarn(ServerPlayer player) {
         if (QuiltLoader.isDevelopmentEnvironment()) return;
