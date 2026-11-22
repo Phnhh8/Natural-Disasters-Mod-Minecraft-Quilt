@@ -43,3 +43,56 @@ tasks.withType(JavaCompile).configureEach {
     options.encoding = 'UTF-8'
     options.release = 21
 }
+
+tasks.register('generateAssets') {
+    doLast {
+        def items = [
+            'tornado_spawner'   : [name: 'Tornado Spawner',        color: 0xAAAAAA],
+            'meteor_spawner'    : [name: 'Meteor Shower Spawner',  color: 0xFF4500],
+            'earthquake_spawner': [name: 'Earthquake Spawner',     color: 0x8B4513],
+            'volcano_spawner'   : [name: 'Super Volcano Spawner',  color: 0xDC143C],
+            'lightning_spawner' : [name: 'Lightning Storm Spawner',color: 0xFFD700],
+            'tsunami_spawner'   : [name: 'Tsunami Spawner',        color: 0x1E90FF],
+            'blizzard_spawner'  : [name: 'Blizzard Spawner',       color: 0xE0FFFF],
+            'blackhole_spawner' : [name: 'Black Hole Spawner',     color: 0x4B0082],
+            'acidrain_spawner'  : [name: 'Acid Rain Spawner',      color: 0x32CD32],
+            'nuke_spawner'      : [name: 'Nuclear Bomb Spawner',   color: 0xFF0000],
+            'sandstorm_spawner' : [name: 'Sandstorm Spawner',      color: 0xF4A460],
+            'wildfire_spawner'  : [name: 'Wildfire Spawner',       color: 0xFF8C00]
+        ]
+
+        def resDir = file("src/main/resources/assets/naturaldisasters")
+        def langDir = new File(resDir, "lang")
+        def modelDir = new File(resDir, "models/item")
+        def texDir = new File(resDir, "textures/item")
+        langDir.mkdirs()
+        modelDir.mkdirs()
+        texDir.mkdirs()
+
+        def langEntries = ['  "itemGroup.naturaldisasters.naturaldisasters_tab": "Natural Disasters"']
+
+        items.each { id, info ->
+            langEntries << "  \"item.naturaldisasters.${id}\": \"${info.name}\""
+
+            new File(modelDir, "${id}.json").text = """{
+  "parent": "minecraft:item/generated",
+  "textures": {
+    "layer0": "naturaldisasters:item/${id}"
+  }
+}"""
+
+            def img = new java.awt.image.BufferedImage(16, 16, java.awt.image.BufferedImage.TYPE_INT_ARGB)
+            def g = img.createGraphics()
+            g.setColor(new java.awt.Color(info.color))
+            g.fillOval(2, 2, 12, 12)
+            g.setColor(java.awt.Color.WHITE)
+            g.drawOval(2, 2, 12, 12)
+            g.dispose()
+            javax.imageio.ImageIO.write(img, "PNG", new File(texDir, "${id}.png"))
+        }
+
+        new File(langDir, "en_us.json").text = "{\n" + langEntries.join(",\n") + "\n}"
+    }
+}
+
+processResources.dependsOn('generateAssets')
