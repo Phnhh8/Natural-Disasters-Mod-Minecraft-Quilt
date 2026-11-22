@@ -10,7 +10,7 @@
       "contributors": {
         "Phnhh_8": "Owner"
       },
-      "license": "All Rights Reserved"
+      "license": "MIT"
     },
     "intermediate_mappings": "net.fabricmc:intermediary",
     "entrypoints": {
