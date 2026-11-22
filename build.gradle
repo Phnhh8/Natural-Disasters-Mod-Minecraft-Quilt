@@ -1,13 +1,13 @@
 plugins {
     id 'java'
-    id 'org.quiltmc.loom' version '1.9.+'
+    id 'org.quiltmc.loom' version '1.15.1'
 }
 
 version = '1.0.0'
-group = 'com.phnhh8.quiltmod'
+group = 'com.example.disasters'
 
 base {
-    archivesName = 'phnhh8-quilt-1.21.1'
+    archivesName = 'naturaldisasters-quilt-1.21.1'
 }
 
 java {
@@ -19,7 +19,7 @@ java {
 repositories {
     maven {
         name = 'Quilt'
-        url = 'https://' + 'maven.quiltmc.org/repository/release'
+        url = 'https://' + 'maven.quiltmc.org/repository/release/'
     }
     maven {
         name = 'Fabric'
