@@ -1,20 +1,20 @@
 {
   "schema_version": 1,
   "quilt_loader": {
-    "group": "com.phnhh8.quiltmod",
-    "id": "phnhh8_quiltmod",
+    "group": "com.example.disasters",
+    "id": "naturaldisasters",
     "version": "1.0.0",
     "metadata": {
-      "name": "Phnhh_8 Quilt Mod",
-      "description": "Minecraft 1.21.1 Quilt mod by Phnhh_8.",
+      "name": "Natural Disaster Mod by Phnhh_8",
+      "description": "Adds 12 destructive natural disasters to Minecraft 1.21.1.",
       "contributors": {
         "Phnhh_8": "Owner"
       },
-      "license": "MIT"
+      "license": "All Rights Reserved"
     },
     "intermediate_mappings": "net.fabricmc:intermediary",
     "entrypoints": {
-      "init": "com.phnhh8.quiltmod.MainMod"
+      "init": "com.example.disasters.NaturalDisastersMod"
     },
     "depends": [
       {
