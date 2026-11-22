@@ -19,22 +19,22 @@ java {
 repositories {
     maven {
         name = 'Quilt'
-        url = 'https://' + 'maven.quiltmc.org/repository/release/'
+        url = 'https://' + 'maven.' + 'quiltmc.org/repository/release/'
     }
     maven {
         name = 'Fabric'
-        url = 'https://' + 'maven.fabricmc.net/'
+        url = 'https://' + 'maven.' + 'fabricmc.net/'
     }
     maven {
         name = 'GoogleMavenMirror'
-        url = 'https://' + '://googleapis.com'
+        url = 'https://' + 'maven-central.storage-download.' + '://googleapis.com'
     }
     mavenCentral()
 }
 
 dependencies {
     minecraft 'com.mojang:minecraft:1.21.1'
-    mappings 'org.quiltmc:quilt-mappings:1.21.1+build.1:intermediary-v2'
+    mappings loom.officialMojangMappings()
     modImplementation 'org.quiltmc:quilt-loader:0.27.1'
     modImplementation 'org.quiltmc.quilted-fabric-api:quilted-fabric-api:11.0.0-alpha.3+0.102.0-1.21'
 }
