@@ -14,7 +14,9 @@
     },
     "intermediate_mappings": "net.fabricmc:intermediary",
     "entrypoints": {
-      "init": "com.example.disasters.NaturalDisastersMod"
+      "main": [
+        "com.example.disasters.NaturalDisastersMod"
+      ]
     },
     "depends": [
       {
