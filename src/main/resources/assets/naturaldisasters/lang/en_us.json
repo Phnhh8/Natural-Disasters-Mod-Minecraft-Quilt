@@ -1,0 +1,15 @@
+{
+  "itemGroup.naturaldisasters.naturaldisasters_tab": "Natural Disasters",
+  "item.naturaldisasters.tornado_spawner": "Tornado Spawner",
+  "item.naturaldisasters.meteor_spawner": "Meteor Shower Spawner",
+  "item.naturaldisasters.earthquake_spawner": "Earthquake Spawner",
+  "item.naturaldisasters.volcano_spawner": "Super Volcano Spawner",
+  "item.naturaldisasters.lightning_spawner": "Lightning Storm Spawner",
+  "item.naturaldisasters.tsunami_spawner": "Tsunami Spawner",
+  "item.naturaldisasters.blizzard_spawner": "Blizzard Spawner",
+  "item.naturaldisasters.blackhole_spawner": "Black Hole Spawner",
+  "item.naturaldisasters.acidrain_spawner": "Acid Rain Spawner",
+  "item.naturaldisasters.nuke_spawner": "Nuclear Bomb Spawner",
+  "item.naturaldisasters.sandstorm_spawner": "Sandstorm Spawner",
+  "item.naturaldisasters.wildfire_spawner": "Wildfire Spawner"
+}
