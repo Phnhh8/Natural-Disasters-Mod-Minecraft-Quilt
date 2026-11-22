@@ -8,20 +8,23 @@ import net.minecraft.server.level.ServerPlayer;
 import org.quiltmc.loader.api.QuiltLoader;
 
 import java.nio.file.Path;
+import java.util.List;
 
 public class AntiRepostHandler {
 
-    private static final String OFFICIAL_JAR_NAME = "naturaldisasters-quilt-1.21.1-1.0.0.jar";
-    private static final String CURSEFORGE_URL = "https://" + String.join(".", "www", "curseforge", "com") + "/minecraft/mc-mods/natural-disaster-mod-by-phnhh-8";
+    private static final List<String> BANNED_SITES = List.of("9minecraft", "mc-mod", "dl-minecraft", "tlauncher");
+    private static final String CURSEFORGE_URL = "https://" + String.join(".", "www", "curseforge", "com") + "/minecraft/mc-mods/natural-disaster-mod-by-phnhh-8s";
 
     public static void checkAndWarn(ServerPlayer player) {
         if (QuiltLoader.isDevelopmentEnvironment()) return;
 
         try {
             Path jarPath = Path.of(AntiRepostHandler.class.getProtectionDomain().getCodeSource().getLocation().toURI());
-            String actualFileName = jarPath.getFileName().toString();
+            String actualFileName = jarPath.getFileName().toString().toLowerCase();
 
-            if (!actualFileName.equals(OFFICIAL_JAR_NAME)) {
+            boolean isRepost = BANNED_SITES.stream().anyMatch(actualFileName::contains);
+
+            if (isRepost) {
                 Component msg = Component.literal("[CẢNH BÁO / WARNING] ")
                         .withStyle(ChatFormatting.RED, ChatFormatting.BOLD)
                         .append(Component.literal("Bạn đang dùng bản mod re-up trái phép. Tải bản gốc tại CurseForge: ")
