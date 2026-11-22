@@ -1,0 +1,22 @@
+{
+  "schemaVersion": 1,
+  "id": "naturaldisasters",
+  "version": "1.0.0",
+  "name": "Natural Disaster Mod by Phnhh_8",
+  "description": "Adds 12 destructive natural disasters to Minecraft 1.21.1.",
+  "authors": [
+    "Phnhh_8"
+  ],
+  "license": "MIT",
+  "environment": "*",
+  "entrypoints": {
+    "main": [
+      "com.example.disasters.NaturalDisastersMod"
+    ]
+  },
+  "depends": {
+    "fabricloader": ">=0.15.0",
+    "fabric-api": "*",
+    "minecraft": "~1.21.1"
+  }
+}
