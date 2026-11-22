@@ -1,5 +1,7 @@
 package com.example.disasters;
 
+import com.example.disasters.event.AntiRepostHandler;
+import net.fabricmc.api.ModInitializer;
 import net.fabricmc.fabric.api.event.lifecycle.v1.ServerTickEvents;
 import net.fabricmc.fabric.api.itemgroup.v1.FabricItemGroup;
 import net.fabricmc.fabric.api.networking.v1.ServerPlayConnectionEvents;
@@ -34,8 +36,6 @@ import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.levelgen.Heightmap;
 import net.minecraft.world.phys.AABB;
 import net.minecraft.world.phys.Vec3;
-import org.quiltmc.loader.api.ModContainer;
-import org.quiltmc.qsl.base.api.entrypoint.ModInitializer;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -81,7 +81,7 @@ public class NaturalDisastersMod implements ModInitializer {
     private static int tTick = 0, bTick = 0;
 
     @Override
-    public void onInitialize(ModContainer mod) {
+    public void onInitialize() {
         ServerTickEvents.END_WORLD_TICK.register(NaturalDisastersMod::onTick);
         ServerPlayConnectionEvents.JOIN.register((handler, sender, server) ->
                 AntiRepostHandler.checkAndWarn(handler.getPlayer())
