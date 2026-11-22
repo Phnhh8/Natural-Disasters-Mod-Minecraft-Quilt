@@ -2,15 +2,15 @@ pluginManagement {
     repositories {
         maven {
             name = 'Quilt'
-            url = 'https://' + 'maven.quiltmc.org/repository/release/'
+            url = 'https://' + 'maven.' + 'quiltmc.org/repository/release/'
         }
         maven {
             name = 'Fabric'
-            url = 'https://' + 'maven.fabricmc.net/'
+            url = 'https://' + 'maven.' + 'fabricmc.net/'
         }
         maven {
             name = 'GoogleMavenMirror'
-            url = 'https://' + '://googleapis.com'
+            url = 'https://' + 'maven-central.storage-download.' + '://googleapis.com'
         }
         gradlePluginPortal()
         mavenCentral()
