@@ -25,6 +25,10 @@ repositories {
         name = 'Fabric'
         url = 'https://' + 'maven.fabricmc.net/'
     }
+    maven {
+        name = 'GoogleMavenMirror'
+        url = 'https://' + '://googleapis.com'
+    }
     mavenCentral()
 }
 
