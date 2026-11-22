@@ -2,17 +2,15 @@ pluginManagement {
     repositories {
         maven {
             name = 'Quilt'
-            url = 'https://' + 'maven.' + 'quiltmc.org/repository/release/'
+            url = 'https://quiltmc.org'
         }
         maven {
             name = 'Fabric'
-            url = 'https://' + 'maven.' + 'fabricmc.net/'
+            url = 'https://fabricmc.net'
         }
-        maven {
-            name = 'GoogleMavenMirror'
-            url = 'https://' + 'maven-central.storage-download.' + '://googleapis.com'
-        }
-        gradlePluginPortal()
         mavenCentral()
+        gradlePluginPortal()
     }
 }
+
+rootProject.name = 'Natural-Disasters-Mod-Minecraft-Quilt'
